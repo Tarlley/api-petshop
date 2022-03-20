@@ -3,10 +3,9 @@ package com.devtarlley.apipetshop.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -29,6 +28,24 @@ public class Endereco {
     private String bairro;
 
     private String cep;
+
+    @OneToMany(mappedBy = "enderecoEntrega")
+    private List<Pet> pets = new ArrayList<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "cidade_id")
+    private Cidade cidade;
+
+    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cidade cidade) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.cidade = cidade;
+    }
 
     @Override
     public boolean equals(Object o) {

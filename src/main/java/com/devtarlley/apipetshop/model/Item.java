@@ -1,13 +1,11 @@
 package com.devtarlley.apipetshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Objects;
+import javax.persistence.*;
+import java.util.*;
 
 @Getter
 @Setter
@@ -24,12 +22,28 @@ public class Item {
 
     private Double preco;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    @OneToMany(mappedBy = "id.item")
+    private Set<ItemPedido> itensPedidos = new HashSet<>();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Item item = (Item) o;
         return id != null && Objects.equals(id, item.id);
+    }
+
+    public List<Pedido> getPedidos(){
+        List<Pedido> lista = new ArrayList<>();
+        for (ItemPedido x : itensPedidos){
+            lista.add(x.getPedido());
+        }
+        return lista;
     }
 
     @Override

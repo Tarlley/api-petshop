@@ -11,7 +11,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Entity
-public class pagamentoCartao extends Pagamento{
+public class PagamentoCartao extends Pagamento{
 
     private Integer parcelas;
 
@@ -19,7 +19,7 @@ public class pagamentoCartao extends Pagamento{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        pagamentoCartao that = (pagamentoCartao) o;
+        PagamentoCartao that = (PagamentoCartao) o;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 

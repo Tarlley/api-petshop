@@ -4,10 +4,7 @@ package com.devtarlley.apipetshop.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
@@ -22,6 +19,13 @@ public abstract class Pagamento {
     private Integer id;
 
     private Integer estado;
+
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    @MapsId
+    private Pedido pedido;
+
+    public Pedido getPedido() { return pedido;}
 
     @Override
     public boolean equals(Object o) {

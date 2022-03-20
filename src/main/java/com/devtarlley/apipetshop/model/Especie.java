@@ -3,10 +3,9 @@ package com.devtarlley.apipetshop.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -21,6 +20,14 @@ public class Especie {
     private Integer id;
 
     private String nome;
+
+    @OneToMany(mappedBy = "especie")
+    private List<Raca> racas = new ArrayList<>();
+
+    public Especie(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 
     @Override
     public boolean equals(Object o) {

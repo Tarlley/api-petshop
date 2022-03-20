@@ -3,10 +3,9 @@ package com.devtarlley.apipetshop.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -20,6 +19,19 @@ public class Cidade {
     private Integer id;
 
     private String nome;
+
+    @OneToMany(mappedBy = "cidade")
+    private List<Endereco> enderecos = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
+
+    public Cidade(Integer id, String nome, Estado estado) {
+        this.id = id;
+        this.nome = nome;
+        this.estado = estado;
+    }
 
     @Override
     public boolean equals(Object o) {
