@@ -1,6 +1,5 @@
 package com.devtarlley.apipetshop;
 
-import com.devtarlley.apipetshop.model.*;
 import com.devtarlley.apipetshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
