@@ -1,5 +1,6 @@
 package com.devtarlley.apipetshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -20,6 +21,7 @@ public class Categoria {
 
     private String nome;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private List<Item> itens = new ArrayList<>();
 

@@ -1,7 +1,8 @@
 package com.devtarlley.apipetshop.controller;
 
-import com.devtarlley.apipetshop.dto.ItemDTO;
-import com.devtarlley.apipetshop.service.ItemService;
+import com.devtarlley.apipetshop.dto.CategoriaDTO;
+import com.devtarlley.apipetshop.model.Categoria;
+import com.devtarlley.apipetshop.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "item")
-public class ItemController {
+@RequestMapping(path = "categoria")
+public class CategoriaController {
 
     @Autowired
-    private ItemService itemService;
-
+    private CategoriaService categoriaService;
 
     @GetMapping
-    ResponseEntity<List<ItemDTO>> buscarTodosItens(){
-        return ResponseEntity.ok().body(itemService.buscarTodosItens());
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
+        return ResponseEntity.ok().body(categoriaService.findAll());
     }
 }

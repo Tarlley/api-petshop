@@ -14,6 +14,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
+
     private final ItemMapper mapper;
 
     public ItemServiceImpl(ItemMapper mapper) {
